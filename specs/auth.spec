@@ -1,4 +1,5 @@
 # Authentication
+
 ## Login as personal user
 * Log in as "personal"
 * Log out

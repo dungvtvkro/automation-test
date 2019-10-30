@@ -27,7 +27,7 @@ step("Log in as <user_type>", async (user_type) => {
 });
 
 step("Log out", async () => {
-    await waitFor(3000); // wait for covering frame to disappear
+    await waitFor(2000); // wait for covering frame to disappear
     await click(image({ class: 'pull-left ng-isolate-scope' }));
     await click('Logout');
     assert.ok(await text('Log in').exists());
