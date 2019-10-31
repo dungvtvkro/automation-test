@@ -4,10 +4,6 @@ const { closeBrowser, text, click, attach, to, waitFor, $, write, clear, into, t
 const assert = require("assert");
 const env = process.env.NODE_ENV || 'default';
 
-afterSuite(async () => {
-    await closeBrowser();
-});
-
 step("Upload image <image>", async (image) => {
     await waitFor(2000); // wait for covering frame to disappear
     await click('Upload');
@@ -33,4 +29,18 @@ step("Upload image <image>", async (image) => {
     await click('Publish photo');
     await waitFor(2000);
     assert.ok(await text(`Testing ${timestamp}`, above('Reviewing')).exists());
+});
+
+step("Extract tags from image <image> with tags <tag1> and <tag2>", async (image, tag1, tag2) => {
+    await waitFor(2000); // wait for covering frame to disappear
+    await click('Upload');
+    assert.ok(await text('Start adding photos').exists());
+    await attach(image, to($(`.dz-hidden-input`)));
+
+    await waitFor(4000); // wait for image upload
+    assert.ok(await text(tag1, below('Keywords')).exists());
+    assert.ok(await text(tag2, below('Keywords')).exists()); // successful tags extraction
+
+    await click($(`.icon-icons_close`));
+    await click('Yes');
 });
