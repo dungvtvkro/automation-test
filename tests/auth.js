@@ -15,8 +15,8 @@ afterSuite(async () => {
 });
 
 step("Log in as <user_type>", async (user_type) => {
-    const login_email = user_type == "personal" ? config["personal_user_email"] : config["business_user_email"];
-    const login_password = user_type == "personal" ? config["personal_user_password"] : config["business_user_password"];
+    const login_email = config[`${user_type}_user_email`]
+    const login_password = config[`${user_type}_user_password`]
 
     await goto(config["site"]);
     await click('Log in');
@@ -27,7 +27,7 @@ step("Log in as <user_type>", async (user_type) => {
 });
 
 step("Log out", async () => {
-    await waitFor(2000); // wait for covering frame to disappear
+    await waitFor(4000); // wait for covering frame to disappear
     await click(image({ class: 'pull-left ng-isolate-scope' }));
     await click('Logout');
     assert.ok(await text('Log in').exists());

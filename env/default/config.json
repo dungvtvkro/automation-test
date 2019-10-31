@@ -3,5 +3,7 @@
     "personal_user_email": "pixuser050@dispostable.com",
     "personal_user_password": "Pixerf@1234",
     "business_user_email": "businesspixerf@dispostable.com",
-    "business_user_password": "Pixerf@1234"
+    "business_user_password": "Pixerf@1234",
+    "curator_user_email": "curator-qa@pixerf.com",
+    "curator_user_password": "Pixerf@1234"
 }

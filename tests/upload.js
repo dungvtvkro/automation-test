@@ -5,7 +5,7 @@ const assert = require("assert");
 const env = process.env.NODE_ENV || 'default';
 
 step("Upload image <image>", async (image) => {
-    await waitFor(2000); // wait for covering frame to disappear
+    await waitFor(4000); // wait for covering frame to disappear
     await click('Upload');
     assert.ok(await text('Start adding photos').exists());
     await attach(image, to($(`.dz-hidden-input`)));
