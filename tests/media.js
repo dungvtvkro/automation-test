@@ -3,19 +3,20 @@
 const { closeBrowser, text, click, waitFor, $, scrollTo, write, clear, into, textBox, press } = require('taiko');
 const assert = require("assert");
 const env = process.env.NODE_ENV || 'default';
+const lastMediaSelector = $(".photo:last-child");
 
 step("Viewing media", async () => {
   await waitFor(4000); // wait for covering frame to disappear
   await click('Marketplace');
   assert.ok(await text('Browse images').exists());
   await waitFor(2000); // Wait for new media is loaded
-  await scrollTo($(".photo:last-child"));
+  await scrollTo(lastMediaSelector);
   await waitFor(2000); // Wait for new media is loaded
   assert.ok((await $(".photo").get()).length, 34);
 });
 
 step("Like/Unlike media", async () => {
-  await click($(`.photo:last-child`));
+  await click(lastMediaSelector);
   const is_liked = await text("class", `.photo:last-child .photo__tools .btn-like--liked`).exists()
   assert.ok(await text('Photo Details').exists());
   await click($(".photo-detail__photo-info__top-info .icon-icons_like"));
@@ -41,10 +42,10 @@ step("Comment on media", async () => {
 });
 
 step("Star/Remove star media", async () => {
-  const is_stared = await text("class", `.photo-detail__main-content__photo-thumbnail .photo__tools .star-btn--stared`).exists()
+  const is_starred = await text("class", `.photo-detail__main-content__photo-thumbnail .photo__tools .star-btn--stared`).exists()
   await click($(".photo-detail__main-content__photo-thumbnail .star-btn"));
 
-  if (is_stared) {
+  if (is_starred) {
     assert.ok(!text("class", ".photo-detail__main-content__photo-thumbnail .photo__tools .star-btn--stared").exists());
   }
   else {
