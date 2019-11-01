@@ -32,7 +32,7 @@ step("Upload image <image>", async (image) => {
 });
 
 step("Extract tags from image <image> with tags <tag1> and <tag2>", async (image, tag1, tag2) => {
-    await waitFor(2000); // wait for covering frame to disappear
+    await waitFor(4000); // wait for covering frame to disappear
     await click('Upload');
     assert.ok(await text('Start adding photos').exists());
     await attach(image, to($(`.dz-hidden-input`)));
